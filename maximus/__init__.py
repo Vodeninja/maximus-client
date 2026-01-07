@@ -8,6 +8,6 @@ from .types import Chat, Message, User, ChatType
 from .session import Session
 from . import events
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__ = ["MaxClient", "Chat", "Message", "User", "ChatType", "Session", "events"]
 
