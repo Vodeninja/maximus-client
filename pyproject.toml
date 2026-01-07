@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maximus-client"
+version = "0.1.0"
+description = "Python library for working with MAX messenger"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Vodeninja", email = "root@vodeninja.ru"}
+]
+keywords = ["max", "messenger", "api", "websocket", "client"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "websockets>=12.0",
+    "sqlalchemy>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Vodeninja/maximus-client"
+"Bug Reports" = "https://github.com/Vodeninja/maximus-client/issues"
+"Source Code" = "https://github.com/Vodeninja/maximus-client"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["maximus*"]
+exclude = ["tests*"]
