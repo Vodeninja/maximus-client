@@ -63,3 +63,12 @@ if __name__ == "__main__":
 ## License
 
 MIT License
+
+
+## Support Development
+
+If you find this library useful, consider making a donation to support development:
+
+💳 [Donate via T-Bank](https://tbank.ru/cf/9EBX1KVINtn)
+
+Your donations help maintain and improve this library!
