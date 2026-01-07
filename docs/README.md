@@ -539,3 +539,11 @@ Contributions are welcome! Please feel free to submit issues and pull requests.
 ## License
 
 MIT License - see LICENSE file for details.
+
+## Support Development
+
+If you find this library useful, consider making a donation to support development:
+
+💳 [Donate via T-Bank](https://tbank.ru/cf/9EBX1KVINtn)
+
+Your donations help maintain and improve this library!
