@@ -49,9 +49,10 @@ if __name__ == "__main__":
 
 ## Documentation
 
-- [Complete Documentation](docs/README.md)
-- [API Reference](docs/api-reference.md)
-- [Examples](docs/examples.md)
+- [Complete Documentation](https://github.com/Vodeninja/maximus-client/blob/main/docs/README.md)
+- [API Reference](https://github.com/Vodeninja/maximus-client/blob/main/docs/api-reference.md)
+- [Examples](https://github.com/Vodeninja/maximus-client/blob/main/docs/examples.md)
+- [PyPI Package](https://pypi.org/project/maximus-client/)
 
 ## Requirements
 
