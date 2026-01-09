@@ -30,7 +30,7 @@ async def main():
         
         # Example: Send sticker on command
         if message.text.lower() == "sticker":
-            await messaкакge.reply_sticker(80382389)  # Example sticker ID
+            await message.reply_sticker(80382389)  # Example sticker ID
     
     @client.on("contacts_update")
     async def on_contacts_update(contacts):
