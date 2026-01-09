@@ -110,6 +110,16 @@ class Message:
             return await self._client.send_sticker(self.chat_id, sticker_id, reply_to=self.id)
         raise RuntimeError("Message not bound to client")
     
+    async def react(self, reaction: str = "👍"):
+        """React to this message with an emoji.
+        
+        Args:
+            reaction (str): Reaction emoji (default: "👍")
+        """
+        if self._client:
+            return await self._client.send_reaction(self.chat_id, self.id, reaction)
+        raise RuntimeError("Message not bound to client")
+    
     async def edit(self, text: str):
         if self._client:
             return await self._client.edit_message(self.chat_id, self.id, text)
@@ -193,6 +203,17 @@ class Chat:
         """
         if self._client:
             return await self._client.send_sticker(self.id, sticker_id, reply_to=message.id)
+        raise RuntimeError("Chat not bound to client")
+    
+    async def react_to_message(self, message_id: str, reaction: str = "👍"):
+        """React to a message in this chat.
+        
+        Args:
+            message_id (str): ID of the message to react to
+            reaction (str): Reaction emoji (default: "👍")
+        """
+        if self._client:
+            return await self._client.send_reaction(self.id, message_id, reaction)
         raise RuntimeError("Chat not bound to client")
     
     @classmethod

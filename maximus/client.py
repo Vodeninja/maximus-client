@@ -356,6 +356,19 @@ class MaxClient:
         await self.connection.send_sticker(chat_id, sticker_id, reply_to)
         return None
     
+    async def send_reaction(self, chat_id: int, message_id: str, reaction: str = "👍") -> None:
+        """Send a reaction to a message.
+        
+        Args:
+            chat_id (int): Chat ID where the message is
+            message_id (str): ID of the message to react to
+            reaction (str): Reaction emoji (default: "👍")
+        """
+        if not self.connection.is_connected:
+            print("Connection lost, reconnecting before sending...")
+            await self._reconnect()
+        await self.connection.send_reaction(chat_id, message_id, "EMOJI", reaction)
+    
     async def edit_message(self, chat_id: int, message_id: str, text: str) -> Optional[Message]:
         payload = {
             "chatId": chat_id,

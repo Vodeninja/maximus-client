@@ -78,6 +78,28 @@ class MaximusConnection:
         await self.send(message)
         return self.seq
     
+    async def send_reaction(self, chat_id: int, message_id: str, reaction_type: str = "EMOJI", reaction_id: str = "👍"):
+        """Send a reaction to a message.
+        
+        Args:
+            chat_id (int): Chat ID where the message is
+            message_id (str): ID of the message to react to
+            reaction_type (str): Type of reaction (default: "EMOJI")
+            reaction_id (str): Reaction emoji or ID (default: "👍")
+        """
+        payload = {
+            "chatId": chat_id,
+            "messageId": message_id,
+            "reaction": {
+                "reactionType": reaction_type,
+                "id": reaction_id
+            }
+        }
+        
+        message = self.create_message(178, payload)
+        await self.send(message)
+        return self.seq
+    
     async def connect(self):
         headers = self.get_headers()
         self.websocket = await websockets.connect(self.ws_url, extra_headers=headers)

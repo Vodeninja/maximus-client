@@ -31,7 +31,12 @@ async def main():
         # Example: Send sticker on command
         if message.text.lower() == "sticker":
             await message.reply_sticker(80382389)  # Example sticker ID
-    
+        
+        # Example: React to message
+        if message.text.lower() == "like":
+            await message.react("👍")
+
+        
     @client.on("contacts_update")
     async def on_contacts_update(contacts):
         print(f"Contacts updated: {len(contacts)}")

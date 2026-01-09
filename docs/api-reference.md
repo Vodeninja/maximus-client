@@ -124,6 +124,33 @@ await client.send_sticker(12345, 80382389)
 await client.send_sticker(12345, 80382389, reply_to="msg_123")
 ```
 
+###### `async send_reaction(chat_id: int, message_id: str, reaction: str = "👍") -> None`
+
+Send a reaction to a message.
+
+**Parameters:**
+- `chat_id` (int): Chat ID where the message is
+- `message_id` (str): ID of the message to react to
+- `reaction` (str): Reaction emoji (default: "👍")
+
+**Returns:** None
+
+**Raises:**
+- `RuntimeError`: If client is not connected
+- `ValueError`: If chat_id is invalid
+
+**Example:**
+```python
+# Send thumbs up reaction
+await client.send_reaction(12345, "msg_123", "👍")
+
+# Send heart reaction
+await client.send_reaction(12345, "msg_123", "❤️")
+
+# Send laugh reaction
+await client.send_reaction(12345, "msg_123", "😂")
+```
+
 ###### `async edit_message(chat_id: int, message_id: str, text: str) -> Optional[Message]`
 
 Edit an existing message.
@@ -339,6 +366,25 @@ Reply to a specific message with a sticker.
 
 **Returns:** `Optional[Message]` - Reply message object
 
+##### `async react_to_message(message_id: str, reaction: str = "👍") -> None`
+
+React to a message in this chat.
+
+**Parameters:**
+- `message_id` (str): ID of the message to react to
+- `reaction` (str): Reaction emoji (default: "👍")
+
+**Returns:** None
+
+**Example:**
+```python
+# React to a message in chat
+await chat.react_to_message("msg_123", "👍")
+
+# React with heart
+await chat.react_to_message("msg_123", "❤️")
+```
+
 #### Class Methods
 
 ##### `from_dict(data: Dict[str, Any], client: Optional[Any] = None) -> "Chat"`
@@ -408,6 +454,30 @@ Reply to this message with a sticker.
 
 **Raises:**
 - `RuntimeError`: If message is not bound to a client
+
+##### `async react(reaction: str = "👍") -> None`
+
+React to this message with an emoji.
+
+**Parameters:**
+- `reaction` (str): Reaction emoji (default: "👍")
+
+**Returns:** None
+
+**Raises:**
+- `RuntimeError`: If message is not bound to a client
+
+**Example:**
+```python
+# React with thumbs up
+await message.react("👍")
+
+# React with heart
+await message.react("❤️")
+
+# React with default (thumbs up)
+await message.react()
+```
 
 ##### `async edit(text: str) -> Optional[Message]`
 
