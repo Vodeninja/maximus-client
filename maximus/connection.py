@@ -53,6 +53,31 @@ class MaximusConnection:
         await self.send(message)
         return self.seq
     
+    async def send_sticker(self, chat_id: int, sticker_id: int, reply_to: Optional[str] = None):
+        import time
+        cid = int(time.time() * 1000)
+        
+        message_data = {
+            "cid": cid,
+            "attaches": [{
+                "_type": "STICKER",
+                "stickerId": sticker_id
+            }]
+        }
+        
+        if reply_to:
+            message_data["replyTo"] = reply_to
+        
+        payload = {
+            "chatId": chat_id,
+            "message": message_data,
+            "notify": True
+        }
+        
+        message = self.create_message(64, payload)
+        await self.send(message)
+        return self.seq
+    
     async def connect(self):
         headers = self.get_headers()
         self.websocket = await websockets.connect(self.ws_url, extra_headers=headers)

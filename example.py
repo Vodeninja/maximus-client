@@ -27,6 +27,10 @@ async def main():
             chat = message.chat
             if chat:
                 await chat.send_message("Test message")
+        
+        # Example: Send sticker on command
+        if message.text.lower() == "sticker":
+            await messaкакge.reply_sticker(80382389)  # Example sticker ID
     
     @client.on("contacts_update")
     async def on_contacts_update(contacts):

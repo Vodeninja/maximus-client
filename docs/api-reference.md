@@ -100,6 +100,30 @@ await client.send_message(12345, "Hello, world!")
 await client.send_message(12345, "Thanks!", reply_to="msg_123")
 ```
 
+###### `async send_sticker(chat_id: int, sticker_id: int, reply_to: Optional[str] = None) -> Optional[Message]`
+
+Send a sticker to a chat.
+
+**Parameters:**
+- `chat_id` (int): Target chat ID
+- `sticker_id` (int): Sticker ID to send
+- `reply_to` (str, optional): ID of message to reply to
+
+**Returns:** `Optional[Message]` - Message object or None
+
+**Raises:**
+- `RuntimeError`: If client is not connected
+- `ValueError`: If chat_id is invalid
+
+**Example:**
+```python
+# Send sticker
+await client.send_sticker(12345, 80382389)
+
+# Reply with sticker
+await client.send_sticker(12345, 80382389, reply_to="msg_123")
+```
+
 ###### `async edit_message(chat_id: int, message_id: str, text: str) -> Optional[Message]`
 
 Edit an existing message.
@@ -283,6 +307,18 @@ Send a message to this chat.
 **Raises:**
 - `RuntimeError`: If chat is not bound to a client
 
+##### `async send_sticker(sticker_id: int) -> Optional[Message]`
+
+Send a sticker to this chat.
+
+**Parameters:**
+- `sticker_id` (int): Sticker ID to send
+
+**Returns:** `Optional[Message]` - Sent message object
+
+**Raises:**
+- `RuntimeError`: If chat is not bound to a client
+
 ##### `async reply(message: Message, text: str) -> Optional[Message]`
 
 Reply to a specific message in this chat.
@@ -290,6 +326,16 @@ Reply to a specific message in this chat.
 **Parameters:**
 - `message` (Message): Message to reply to
 - `text` (str): Reply text
+
+**Returns:** `Optional[Message]` - Reply message object
+
+##### `async reply_sticker(message: Message, sticker_id: int) -> Optional[Message]`
+
+Reply to a specific message with a sticker.
+
+**Parameters:**
+- `message` (Message): Message to reply to
+- `sticker_id` (int): Sticker ID to send
 
 **Returns:** `Optional[Message]` - Reply message object
 
@@ -345,6 +391,18 @@ Reply to this message.
 
 **Parameters:**
 - `text` (str): Reply text
+
+**Returns:** `Optional[Message]` - Reply message object
+
+**Raises:**
+- `RuntimeError`: If message is not bound to a client
+
+##### `async reply_sticker(sticker_id: int) -> Optional[Message]`
+
+Reply to this message with a sticker.
+
+**Parameters:**
+- `sticker_id` (int): Sticker ID to send
 
 **Returns:** `Optional[Message]` - Reply message object
 

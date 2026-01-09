@@ -97,6 +97,19 @@ class Message:
             return await self._client.send_message(self.chat_id, text, reply_to=self.id)
         raise RuntimeError("Message not bound to client")
     
+    async def reply_sticker(self, sticker_id: int):
+        """Reply to this message with a sticker.
+        
+        Args:
+            sticker_id (int): Sticker ID to send
+            
+        Returns:
+            Optional[Message]: Reply message object
+        """
+        if self._client:
+            return await self._client.send_sticker(self.chat_id, sticker_id, reply_to=self.id)
+        raise RuntimeError("Message not bound to client")
+    
     async def edit(self, text: str):
         if self._client:
             return await self._client.edit_message(self.chat_id, self.id, text)
@@ -150,9 +163,36 @@ class Chat:
             return await self._client.send_message(self.id, text)
         raise RuntimeError("Chat not bound to client")
     
+    async def send_sticker(self, sticker_id: int):
+        """Send a sticker to this chat.
+        
+        Args:
+            sticker_id (int): Sticker ID to send
+            
+        Returns:
+            Optional[Message]: Sent message object
+        """
+        if self._client:
+            return await self._client.send_sticker(self.id, sticker_id)
+        raise RuntimeError("Chat not bound to client")
+    
     async def reply(self, message: Message, text: str):
         if self._client:
             return await self._client.send_message(self.id, text, reply_to=message.id)
+        raise RuntimeError("Chat not bound to client")
+    
+    async def reply_sticker(self, message: Message, sticker_id: int):
+        """Reply to a message with a sticker.
+        
+        Args:
+            message (Message): Message to reply to
+            sticker_id (int): Sticker ID to send
+            
+        Returns:
+            Optional[Message]: Reply message object
+        """
+        if self._client:
+            return await self._client.send_sticker(self.id, sticker_id, reply_to=message.id)
         raise RuntimeError("Chat not bound to client")
     
     @classmethod

@@ -339,6 +339,23 @@ class MaxClient:
         await self.connection.send_message(chat_id, text, reply_to)
         return None
     
+    async def send_sticker(self, chat_id: int, sticker_id: int, reply_to: Optional[str] = None) -> Optional[Message]:
+        """Send a sticker to a chat.
+        
+        Args:
+            chat_id (int): Target chat ID
+            sticker_id (int): Sticker ID to send
+            reply_to (str, optional): ID of message to reply to
+            
+        Returns:
+            Optional[Message]: Message object (may be None)
+        """
+        if not self.connection.is_connected:
+            print("Connection lost, reconnecting before sending...")
+            await self._reconnect()
+        await self.connection.send_sticker(chat_id, sticker_id, reply_to)
+        return None
+    
     async def edit_message(self, chat_id: int, message_id: str, text: str) -> Optional[Message]:
         payload = {
             "chatId": chat_id,
