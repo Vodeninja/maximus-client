@@ -1,33 +1,34 @@
 [build-system]
-requires = ["setuptools>=61.0,<77.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "maximus-client"
-version = "0.1.3"
-description = "Python library for working with MAX messenger API through WebSocket connections"
+version = "0.2.0"
+description = "Modern framework for MAX messenger bots"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 authors = [
     {name = "Vodeninja", email = "root@vodeninja.ru"}
 ]
-keywords = ["max", "messenger", "api", "websocket", "client"]
+keywords = ["max", "messenger", "api", "websocket", "client", "bot"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
     "websockets>=12.0",
-    "sqlalchemy>=2.0.0",
+    "typing-extensions>=4.11.0",
 ]
+
+[project.optional-dependencies]
+all = ["maximus-client[redis]"]
+redis = ["redis>=5.0.0"]
 
 [project.urls]
 Homepage = "https://github.com/Vodeninja/maximus-client"
@@ -35,6 +36,42 @@ Homepage = "https://github.com/Vodeninja/maximus-client"
 "Source Code" = "https://github.com/Vodeninja/maximus-client"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
 include = ["maximus*"]
 exclude = ["tests*"]
+
+[tool.mypy]
+files = ["src", "examples"]
+strict = true
+strict_bytes = true
+local_partial_types = true
+
+[tool.ruff]
+include = [
+    "src/maximus/**/*.py",
+    "examples/**.py",
+    "pyproject.toml",
+]
+fix = true
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "C90", "N", "D", "I", "F", "ASYNC", "C4", "B", "Q", 
+    "T20", "SIM", "PT", "PTH", "TCH", "RUF", "PERF", "UP",
+]
+ignore = [
+    "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",
+    "D212", "D203", "E501", "C901", "RUF002", "RUF009", "B008",
+]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+combine-as-imports = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"

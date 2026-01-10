@@ -63,7 +63,7 @@ MaxClient(
     device_id: Optional[str] = None,
     user_agent: Optional[str] = None,
     app_version: Optional[str] = None,
-    device_type: str = "WEB",
+    device_type: str = "ANDROID",
     locale: str = "ru",
     device_locale: str = "ru",
     os_version: str = "Windows",
@@ -80,7 +80,7 @@ MaxClient(
 - `device_id` (str, optional): Unique device identifier
 - `user_agent` (str, optional): User agent string
 - `app_version` (str, optional): Application version
-- `device_type` (str): Device type. Default: "WEB"
+- `device_type` (str): Device type. Default: "ANDROID"
 - `locale` (str): Application locale. Default: "ru"
 - `device_locale` (str): Device locale. Default: "ru"
 - `os_version` (str): Operating system version. Default: "Windows"

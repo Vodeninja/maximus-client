@@ -16,7 +16,7 @@ class MaxClient:
         device_id: Optional[str] = None,
         user_agent: Optional[str] = None,
         app_version: Optional[str] = None,
-        device_type: str = "WEB",
+        device_type: str = "ANDROID",
         locale: str = "ru",
         device_locale: str = "ru",
         os_version: str = "Windows",

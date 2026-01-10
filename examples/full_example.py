@@ -1,9 +1,11 @@
 import asyncio
-from maximus import MaxClient
 import os
 from dotenv import load_dotenv
 
+from src.maximus import MaxClient
+
 load_dotenv()
+
 
 async def main():
     client = MaxClient(session="session.maximus", debug=True)
@@ -35,8 +37,7 @@ async def main():
         # Example: React to message
         if message.text.lower() == "like":
             await message.react("👍")
-
-        
+    
     @client.on("contacts_update")
     async def on_contacts_update(contacts):
         print(f"Contacts updated: {len(contacts)}")
@@ -52,7 +53,7 @@ async def main():
         raise ValueError("PHONE environment variable is not set")
     
     await client.start(
-        phone=phone_number, #number
+        phone=phone_number,
         code_callback=code_callback
     )
     
